@@ -58,7 +58,7 @@ def montar_email(ultra_critico, critico, urgente, atencao):
             corpo += f"  • {p['produto']}: {p['estoque']} un.\n"
         corpo += "\n"
 
-    todos = critico + urgente + atencao
+    todos = ultra_critico + critico + urgente + atencao
     corpo += "=== LISTA DE COMPRAS ===\n"
     for p in todos:
         if p["estoque"] <= 5:
@@ -74,3 +74,34 @@ def montar_email(ultra_critico, critico, urgente, atencao):
     from datetime import datetime
     corpo += f"\nGerado em: {datetime.now().strftime('%d/%m/%Y %H:%M')}"
     return assunto, corpo
+
+
+def montar_whatsapp(ultra_critico, critico, urgente, atencao):
+    msg = "*ALERTA DE ESTOQUE*\n\n"
+
+    if ultra_critico:
+        msg += "-ULTRA CRÍTICO (≤ 5 un.) — COMPRA URGENTE:\n"
+        for p in ultra_critico:
+            msg += f"  • {p['produto']}: {p['estoque']} un.\n"
+        msg += "\n"
+
+    elif critico:
+        msg += "-CRÍTICO — Compra imediata:*\n"
+        for p in critico:
+            msg += f"• {p['produto']}: {p['estoque']} un.\n"
+        msg += "\n"
+
+    if urgente:
+        msg += "-URGENTE:*\n"
+        for p in urgente:
+            msg += f"• {p['produto']}: {p['estoque']} un.\n"
+        msg += "\n"
+
+    if atencao:
+        msg += "-Atenção:*\n"
+        for p in atencao:
+            msg += f"• {p['produto']}: {p['estoque']} un.\n"
+
+    total = len(critico) + len(urgente) + len(atencao)
+    msg += f"\nTotal: *{total} produto(s)* para repor. Verifique o e-mail!"
+    return msg
