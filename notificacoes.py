@@ -2,7 +2,8 @@ import smtplib
 import requests
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from configs import EMAIL_REMETENTE, EMAIL_DESTINATARIOS, SENHA_APP
+from configs import EMAIL_REMETENTE, EMAIL_DESTINATARIOS, SENHA_APP, CONTA_ID, AUTH_TOKEN
+from twilio.rest import Client
 
 def enviar_email(assunto, corpo):  
 
@@ -19,3 +20,20 @@ def enviar_email(assunto, corpo):
             server.send_message(msg)
         print("✅ E-mail enviado!")
 
+
+def enviar_whatsapp(mensagem):
+    cliente = Client(CONTA_ID, AUTH_TOKEN)
+
+    mensagem = cliente.messages.create(
+     from_='whatsapp:+14155238886',
+     body='Teste enviado pelo Python',
+     to='whatsapp:+5511998113976'
+    )
+
+    print(mensagem.sid)
+
+#    resp = requests.get(url, params=params)
+#    if resp.status_code == 200:
+#        print("✅ WhatsApp enviado!")
+#    else:
+#        print(f"❌ Erro WhatsApp: {resp.text}")

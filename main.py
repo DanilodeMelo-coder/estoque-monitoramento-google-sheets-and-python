@@ -1,8 +1,8 @@
 import schedule
 import time
 from sheets import ler_estoque
-from alertas import classificar, montar_email
-from notificacoes import enviar_email
+from alertas import classificar, montar_email, montar_whatsapp
+from notificacoes import enviar_email, enviar_whatsapp
 from configs import INTERVALO_HORAS
 
 def verificar():
@@ -18,8 +18,10 @@ def verificar():
             return
 
         assunto, corpo = montar_email(ultra_critico, critico, urgente, atencao)
+        msg_whats = montar_whatsapp(ultra_critico,critico, urgente, atencao)
 
         enviar_email(assunto, corpo)
+        enviar_whatsapp(msg_whats)
 
     except Exception as e:
         print(f" Erro: {e}")
