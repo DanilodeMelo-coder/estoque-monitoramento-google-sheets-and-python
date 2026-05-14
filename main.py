@@ -20,7 +20,11 @@ def verificar():
         assunto, corpo = montar_email(ultra_critico, critico, urgente, atencao)
         msg_whats = montar_whatsapp(ultra_critico,critico, urgente, atencao)
 
+        
+        print("ANTES do email")
         enviar_email(assunto, corpo)
+        
+        print("Depois do email")
         enviar_whatsapp(msg_whats)
 
     except Exception as e:
