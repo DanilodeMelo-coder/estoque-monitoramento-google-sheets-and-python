@@ -9,9 +9,12 @@ SCOPES = [
     "https://www.googleapis.com/auth/drive.readonly"
 ]
 
-def ler_estoque():
+def pegar_creds():
     creds_dict = json.loads(os.getenv("credenciais"))
-    creds = Credentials.from_service_account_file(creds_dict, scopes=SCOPES)
+    return creds = Credentials.from_service_account_file(creds_dict, scopes=SCOPES)
+
+def ler_estoque():
+    creds = pegar_creads()
     client = gspread.authorize(creds)
 
     planilha = client.open_by_key(PLANILHA_ID)
