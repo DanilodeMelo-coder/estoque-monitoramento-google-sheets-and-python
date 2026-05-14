@@ -11,11 +11,14 @@ SCOPES = [
 
 def pegar_creds():
     creds_dict = json.loads(os.getenv("credenciais"))
-    return creds = Credentials.from_service_account_file(creds_dict, scopes=SCOPES)
+    creds = Credentials.from_service_account_info(creds_dict, scopes=SCOPES)
+    return creds
+
 
 def ler_estoque():
-    creds = pegar_creads()
+    creds = pegar_creds()
     client = gspread.authorize(creds)
+
 
     planilha = client.open_by_key(PLANILHA_ID)
     aba = planilha.worksheet(ABA_NOME)
