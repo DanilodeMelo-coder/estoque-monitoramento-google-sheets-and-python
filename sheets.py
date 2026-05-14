@@ -8,7 +8,7 @@ SCOPES = [
 ]
 
 def ler_estoque():
-    creds = Credentials.from_service_account_file("credenciais.json", scopes=SCOPES)
+    creds = Credentials.from_service_account_file("credentials.json", scopes=SCOPES)
     client = gspread.authorize(creds)
 
     planilha = client.open_by_key(PLANILHA_ID)
