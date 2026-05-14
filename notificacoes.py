@@ -10,11 +10,13 @@ def enviar_email(assunto, corpo):
         print("1 - antes do SMTP")
 
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+
+            print("Conectando SMTP...")
+
             server.login(EMAIL_REMETENTE, SENHA_APP)
 
-        print("Conectando SMTP...")
 
-        print("2 - após conexão")
+             print("3 - após conexão")
 
 
         for destinatario in EMAIL_DESTINATARIOS:
@@ -28,6 +30,8 @@ def enviar_email(assunto, corpo):
             
             server.send_message(msg)
             print("✅ E-mail enviado!")
+
+        print("4 - conexão finalizada")
 
      except Exception as e:
         print("❌ Erro no email:", e)
