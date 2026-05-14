@@ -1,6 +1,8 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from configs import PLANILHA_ID, ABA_NOME, COLUNA_PRODUTO, COLUNA_ESTOQUE, LINHA_INICIO
+import json
+import os
 
 SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets.readonly",
@@ -8,7 +10,8 @@ SCOPES = [
 ]
 
 def ler_estoque():
-    creds = Credentials.from_service_account_file("credenciais.json", scopes=SCOPES)
+    creds_dict = json.loads(os.getenv("credenciais"))
+    creds = Credentials.from_service_account_file(creds_dict, scopes=SCOPES)
     client = gspread.authorize(creds)
 
     planilha = client.open_by_key(PLANILHA_ID)
