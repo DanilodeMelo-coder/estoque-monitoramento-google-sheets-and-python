@@ -16,7 +16,7 @@ def enviar_email(assunto, corpo):
             print("ASSUNTO:", assunto)
             print("CORPO:", corpo)
 
-            //envia para 2 emails
+            # envia para 2 emails
             for destinatario in EMAIL_DESTINATARIOS:
 
                r = resend.Emails.send({
