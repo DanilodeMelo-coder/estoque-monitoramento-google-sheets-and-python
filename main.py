@@ -22,12 +22,17 @@ def verificar():
 
         
         print("ANTES do email")
+        print("ASSUNTO:", assunto)
+        print("CORPO:", corpo)
+        print("TIPO CORPO:", type(corpo))
         enviar_email(assunto, corpo)
         
         print("Depois do email")
         enviar_whatsapp(msg_whats)
 
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         print(f" Erro: {e}")
 
 

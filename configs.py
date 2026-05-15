@@ -11,7 +11,7 @@ SENHA_APP = os.getenv("SENHA_APP")
 CONTA_ID = os.getenv("CONTA_ID")
 AUTH_TOKEN = os.getenv("AUTH_TOKEN")
 
-RESEND_APYKEY = os.getenv("RESEND_APIKEY ")
+RESEND_APIKEY = os.getenv("RESEND_APIKEY")
 
 ABA_NOME = "Cadastro_Produto"
 COLUNA_PRODUTO = 2

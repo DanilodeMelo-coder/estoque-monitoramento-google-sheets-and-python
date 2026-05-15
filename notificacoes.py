@@ -1,14 +1,20 @@
-import smtplib
 import resend
 import requests
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from configs import EMAIL_REMETENTE, EMAIL_DESTINATARIOS, SENHA_APP, CONTA_ID, AUTH_TOKEN, REDEND_APIKEY
+
+from configs import EMAIL_REMETENTE, EMAIL_DESTINATARIOS, CONTA_ID, AUTH_TOKEN, RESEND_APIKEY
 from twilio.rest import Client
+
 
 def enviar_email(assunto, corpo):  
     try:
+            resend.api_key = RESEND_APIKEY
+            corpo_html = "<pre>" + corpo + "/pre"
+
             print("2 - conectando SMTP")
+            print("API KEY:", resend.api_key)
+            print("DESTINATARIOS:", EMAIL_DESTINATARIOS)
+            print("ASSUNTO:", assunto)
+            print("CORPO:", corpo)
 
             for destinatario in EMAIL_DESTINATARIOS:
 
@@ -16,8 +22,10 @@ def enviar_email(assunto, corpo):
                 "from": "onboarding@resend.dev",
                 "to": destinatario,
                 "subject": assunto,
-                "html": "<p>email enviado para<strong>destinatario</strong>!</p>"
+                "html": corpo_html
                 })
+
+            print(f"email enviado para {destinatario}")
 
             print("4 - conexão finalizada")
 

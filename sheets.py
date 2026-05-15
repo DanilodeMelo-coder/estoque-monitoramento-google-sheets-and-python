@@ -10,7 +10,13 @@ SCOPES = [
 ]
 
 def pegar_creds():
-    creds_dict = json.loads(os.getenv("credenciais"))
+    creds_json = os.getenv("credenciais")
+    if creds_json:
+        creds_dict = json.loads(creds_json)
+    else:
+        with open("credenciais.json", "r") as f:
+            creds_dict = json.load(f)
+    
     creds = Credentials.from_service_account_info(creds_dict, scopes=SCOPES)
     return creds
 
