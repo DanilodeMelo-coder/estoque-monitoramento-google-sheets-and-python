@@ -1,7 +1,7 @@
 import resend
 import requests
 
-from configs import EMAIL_REMETENTE, EMAIL_DESTINATARIOS, CONTA_ID, AUTH_TOKEN, RESEND_APIKEY
+from configs import EMAIL_REMETENTE, EMAIL_DESTINATARIO, CONTA_ID, AUTH_TOKEN, RESEND_APIKEY
 from twilio.rest import Client
 
 
@@ -11,22 +11,20 @@ def enviar_email(assunto, corpo):
             corpo_html = "<pre>" + corpo + "/pre"
 
             #teste
-            print("API KEY:", resend.api_key)
-            print("DESTINATARIOS:", EMAIL_DESTINATARIOS)
+            print("DESTINATARIOS:", EMAIL_DESTINATARIO)
             print("ASSUNTO:", assunto)
             print("CORPO:", corpo)
 
             # envia para 2 emails
-            #for destinatario in EMAIL_DESTINATARIOS:
 
             r = resend.Emails.send({
             "from": "onboarding@resend.dev",
-            "to: EMAIL_DESTINATARIOS,
+            "to": EMAIL_DESTINATARIO,
             "subject": assunto,
             "html": corpo_html
             })
 
-            print(f"email enviado para {destinatario}")
+            print(f"email enviado para {EMAIL_DESTINATARIO}")
 
             print("4 - conexão finalizada")
 

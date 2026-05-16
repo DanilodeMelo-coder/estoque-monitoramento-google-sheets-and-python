@@ -5,7 +5,7 @@ load_dotenv()
 
 PLANILHA_ID = os.getenv("PLANILHA_ID")
 EMAIL_REMETENTE = os.getenv("EMAIL_REMETENTE")
-EMAIL_DESTINATARIOS = [e.strip() for e in os.getenv("EMAIL_DESTINATARIOS").split(",")]
+EMAIL_DESTINATARIO = [e.strip() for e in os.getenv("EMAIL_DESTINATARIO").split(",")]
 SENHA_APP = os.getenv("SENHA_APP")
 
 CONTA_ID = os.getenv("CONTA_ID")
