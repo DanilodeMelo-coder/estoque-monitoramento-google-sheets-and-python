@@ -10,21 +10,21 @@ def enviar_email(assunto, corpo):
             resend.api_key = RESEND_APIKEY
             corpo_html = "<pre>" + corpo + "/pre"
 
-            print("2 - conectando SMTP")
+            #teste
             print("API KEY:", resend.api_key)
             print("DESTINATARIOS:", EMAIL_DESTINATARIOS)
             print("ASSUNTO:", assunto)
             print("CORPO:", corpo)
 
             # envia para 2 emails
-            for destinatario in EMAIL_DESTINATARIOS:
+            #for destinatario in EMAIL_DESTINATARIOS:
 
-               r = resend.Emails.send({
-                "from": "onboarding@resend.dev",
-                "to": destinatario,
-                "subject": assunto,
-                "html": corpo_html
-                })
+            r = resend.Emails.send({
+            "from": "onboarding@resend.dev",
+            "to: destinatario,
+            "subject": assunto,
+            "html": corpo_html
+            })
 
             print(f"email enviado para {destinatario}")
 
