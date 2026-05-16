@@ -21,7 +21,7 @@ def enviar_email(assunto, corpo):
 
             r = resend.Emails.send({
             "from": "onboarding@resend.dev",
-            "to: destinatario,
+            "to: EMAIL_DESTINATARIOS,
             "subject": assunto,
             "html": corpo_html
             })
